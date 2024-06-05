@@ -18,7 +18,8 @@ jobs:
             const workflowFileName = 'maven.yml';  // The workflow file in the testing repo
             const githubToken = process.env.GITHUB_TOKEN;
 
-            const response = await github.actions.createWorkflowDispatch({
+            const octokit = github.getOctokit(githubToken);
+            const response = await octokit.actions.createWorkflowDispatch({
               owner: repoOwner,
               repo: repoName,
               workflow_id: workflowFileName,
