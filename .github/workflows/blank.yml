@@ -1,0 +1,30 @@
+name: Trigger Tests
+
+on:
+  push:
+    branches:
+      - main  # Or any branch you want to monitor
+
+jobs:
+  trigger-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Test Workflow
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const repoOwner = 'Balajii-Codoid';
+            const repoName = 'Demo-QA';
+            const workflowFileName = 'maven.yml';  // The workflow file in the testing repo
+            const githubToken = process.env.GITHUB_TOKEN;
+
+            const response = await github.actions.createWorkflowDispatch({
+              owner: repoOwner,
+              repo: repoName,
+              workflow_id: workflowFileName,
+              ref: 'main'  // The branch to trigger the workflow on
+            });
+
+            console.log(response);
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}  # Reference to the secret stored in the repository
