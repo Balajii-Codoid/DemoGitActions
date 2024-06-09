@@ -38,8 +38,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: setup python
-        uses: actions/setup-python@v2
-        with:
-         python-version: 3.8 #install the python needed
-      
+      - name: Display Workflow Inputs
+        run: |
+          echo "PAT Token: ${{ secrets.G_ACCESS_TOKEN }}"
+          echo "Workflow2 Name: ${{ github.event.inputs.workflow2_name }}"
+          echo "GitHub Account Owner: ${{ github.event.inputs.workflow2_github_account }}"
+          echo "GitHub Repository Name: ${{ github.event.inputs.workflow2_repo_github }}"
+          echo "Payload Baseline Number: ${{ env.payload_Baseline_Number }}"
+          echo "Payload Baseline Revision: ${{ env.payload_Baseline_Revision }}"
