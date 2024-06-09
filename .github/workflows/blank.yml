@@ -12,4 +12,4 @@ jobs:
       - name: Build Cucumber Framework
         run: |
           echo "Build Cucumber Framework"
-          sleep 11s
+          sleep 10s
