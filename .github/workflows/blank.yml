@@ -16,7 +16,7 @@ on:
       workflow2_repo_github:
         description: 'GitHub Repository Name'
         required: true
-        default: 'DemoGitActions'
+        default: 'Demo-QA'
 
 jobs:
   build:
@@ -45,4 +45,4 @@ jobs:
             -H "Accept: application/vnd.github.v3+json" \
             -H "Authorization: token $GITHUB_TOKEN" \
             https://api.github.com/repos/${{ github.event.inputs.workflow2_github_account }}/${{ github.event.inputs.workflow2_repo_github }}/dispatches \
-            -d '{"event_type":"Workflow1","client_payload":{"baselinetag":"${{ env.payload_Baseline_Number }}","revision_number":"${{ env.payload_Baseline_Revision }}"}}'
+            -d '{"event_type":"Workflow2","client_payload":{"baselinetag":"${{ env.payload_Baseline_Number }}","revision_number":"${{ env.payload_Baseline_Revision }}"}}'
